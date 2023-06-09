@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/">Instructors</Link>
+        <Link to="/instructors-page">Instructors Page</Link>
       </li>
       <li>
         <Link to="/dashboard">Dashboard</Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{Navbar}</ul>
         </div>
         <div className="navbar-end">
-          {user && <img  className="rounded-full me-4" width={50} src={user?.photoURL} alt="" />}
+          {user && <img  className="rounded-full me-4 w-12 h-12" src={user?.photoURL} alt="" />}
 
           {user ? (
             <button

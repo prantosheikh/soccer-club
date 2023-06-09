@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@egjs/react-flicking": "^4.10.9",
+    "@tanstack/react-query": "^4.29.12",
+    "@types/react-select": "^5.0.1",
+    "axios": "^1.4.0",
     "firebase": "^9.22.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -20,6 +23,7 @@
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.12.0",
+    "react-select": "^5.7.3",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.11"
   },

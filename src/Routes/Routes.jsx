@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import Home from "../pages/Home/Home/Home";
+import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 
@@ -10,11 +11,15 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement: <ErrorPage></ErrorPage>,
+    // errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "instructors-page",
+        element: <InstructorsPage></InstructorsPage>
       },
       {
         path: "login",
@@ -29,6 +34,12 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>,
+      },
+    ],
   },
 ]);
 
