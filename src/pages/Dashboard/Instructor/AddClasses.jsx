@@ -29,7 +29,7 @@ const AddClasses = () => {
     // console.log(newCalss);
 
     // console.log(Addclass);
-    axiosSecure.post("/instructorsclass", { newCalss }).then((data) => {
+    axiosSecure.post("/instructorsclas", { newCalss }).then((data) => {
       console.log(data.data);
       if (data.data.insertedId) {
         Swal.fire({
