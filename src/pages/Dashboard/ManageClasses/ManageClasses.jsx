@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -7,6 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ManageClasses = () => {
 //  const [instructorsClass, setinstructorsClass] = useState([]);
   const [axiosSecure] = useAxiosSecure();
+  const [feedbackId, setFeedbackId] = useState([]);
+
   
 
  const { data: instructorsClass = [], refetch } = useQuery(
@@ -60,6 +62,7 @@ const ManageClasses = () => {
      
   };
   const handleDenied = (classes) => {
+    setFeedbackId(classes);
      axiosSecure.patch(`/handleDenied/${classes}`).then((res) => {
        console.log(res);
        if (res.data.modifiedCount > 0) {
@@ -91,6 +94,29 @@ const ManageClasses = () => {
       refetch()
     });
   };
+
+  const handleFeedback = (event) => {
+    event.preventDefault()
+    const form = event.target;
+    const feedback = form.feedback.value
+    axiosSecure.patch(`/deniedFeedback/${feedbackId}`, { feedback })
+      .then(res => {
+        console.log(res);
+         if (res.status === 200) {
+           Swal.fire({
+             position: "top-end",
+             icon: "success",
+             title: "Feedback Send",
+             showConfirmButton: false,
+             timer: 1500,
+           });
+         }
+    })
+
+  }
+
+
+
  
 
     return (
@@ -159,7 +185,10 @@ const ManageClasses = () => {
                     Pending
                   </button>
                   <button
-                    onClick={() => handleDenied(classes?._id)}
+                    onClick={() =>
+                      handleDenied(classes?._id) ||
+                      window.my_modal_2.showModal()
+                    }
                     className="btn btn-xs bg-orange-600 mt-3 text-white"
                     disabled={classes?.newStatus === "approved"}
                   >
@@ -170,6 +199,24 @@ const ManageClasses = () => {
             ))}
           </tbody>
         </table>
+        <dialog id="my_modal_2" className="modal">
+          <form onSubmit={handleFeedback} method="dialog" className="modal-box">
+            <h3 className="font-bold text-lg mb-4">Feedback Class</h3>
+            <textarea
+              className="textarea w-full h-36 textarea-primary"
+              placeholder="Bio"
+              name="feedback"
+            ></textarea>
+            <input
+              className="btn btn-sm mt-4 btn-outline btn-primary"
+              type="submit"
+              value="Submit"
+            />
+          </form>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </div>
     );
 };
