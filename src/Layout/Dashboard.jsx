@@ -1,11 +1,14 @@
+import { BiAddToQueue } from "react-icons/bi";
 import {
   FaBookOpen,
+  FaBookReader,
   FaRegBookmark,
   FaUsers,
   FaWallet
 } from "react-icons/fa";
 import {
   FcBusinessContact,
+  FcGallery,
   FcHome
 } from "react-icons/fc";
 import { NavLink, Outlet } from "react-router-dom";
@@ -14,9 +17,9 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
 
-  const isAdmin = false;
-  const isStudent = false
-  const isInstructor = true
+  const isAdmin = true;
+  const isStudent = false;
+  const isInstructor = false;
 
   return (
     <div>
@@ -44,9 +47,51 @@ const Dashboard = () => {
                 </li>
 
                 <li>
+                  <NavLink to="/dashboard/manageclasses">
+                    <FaBookReader className="text-2xl text-blue-500 "></FaBookReader>
+                    Manage Classes
+                  </NavLink>
+                </li>
+
+                <li>
                   <NavLink to="/dashboard/allusers">
                     <FaUsers className="text-2xl text-purple-500 "></FaUsers>
-                    Manage Classes
+                    Manage Users
+                  </NavLink>
+                </li>
+
+                <div className="divider"></div>
+                <li>
+                  <NavLink to="/">
+                    <FcHome className="text-2xl"></FcHome> Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/">
+                    <FcBusinessContact className="text-2xl"></FcBusinessContact>
+                    Contact
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {isInstructor && (
+              <>
+                <li>
+                  <NavLink to="/">
+                    <FcHome className="text-2xl"></FcHome> Instructor Home
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink to="/dashboard/addclasses">
+                    <BiAddToQueue className="text-2xl text-purple-500 "></BiAddToQueue>
+                    Add Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/myclasses">
+                    <FcGallery className="text-2xl text-purple-500 "></FcGallery>
+                    My Classes
                   </NavLink>
                 </li>
                 <div className="divider"></div>
@@ -68,8 +113,8 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/">
-                    <FaRegBookmark className="text-2xl text-green-500"></FaRegBookmark>Selected
-                    Classes
+                    <FaRegBookmark className="text-2xl text-green-500"></FaRegBookmark>
+                    Selected Classes
                   </NavLink>
                 </li>
 
@@ -87,7 +132,7 @@ const Dashboard = () => {
                     Payment History
                   </NavLink>
                 </li>
-                
+
                 <div className="divider"></div>
                 <li>
                   <NavLink to="/">
