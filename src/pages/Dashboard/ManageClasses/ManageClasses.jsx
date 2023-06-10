@@ -56,7 +56,7 @@ const ManageClasses = () => {
   };
   const handleDenied = (classes) => {
     setFeedbackId(classes);
-    axiosSecure.patch(`/handleDenied/${classes}`).then((res) => {
+    axiosSecure.patch(`/classDenied/${classes}`).then((res) => {
       console.log(res);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
@@ -73,7 +73,7 @@ const ManageClasses = () => {
   const handleApproved = (classes) => {
     console.log(classes);
 
-    axiosSecure.patch(`/instructorsclass/${classes}`).then((res) => {
+    axiosSecure.patch(`/changestatus/${classes}`).then((res) => {
       console.log(res);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
@@ -114,7 +114,6 @@ const ManageClasses = () => {
         Manage <span className="text-blue-500">Classes</span>
       </h2>
       <table className="table">
-     
         <thead>
           <tr>
             <th> </th>
@@ -158,27 +157,26 @@ const ManageClasses = () => {
               <td>
                 <button
                   onClick={() => handleApproved(classes?._id)}
-                  className="btn btn-xs bg-blue-600 me-2 text-white"
-                  disabled={classes?.deniedStatus === "Denied"}
+                  className="btn btn-xs bg-blue-600 mt-2 me-2 text-white"
+                  disabled={classes?.status === "approved"}
                 >
                   approved
                 </button>
                 <button
                   onClick={() => handlePending(classes)}
-                  className="btn btn-xs bg-green-600 me-1 text-white"
+                  className="btn btn-xs bg-green-600 mt-2 me-1 text-white"
                   disabled={
-                    classes?.newStatus === "approved" ||
-                    classes?.deniedStatus === "Denied"
+                    classes?.status === "approved"
                   }
                 >
                   Pending
                 </button>
                 <button
-                  onClick={() =>
-                    handleDenied(classes?._id) || window.my_modal_2.showModal()
+                  onClick={
+                    () => handleDenied(classes?._id) || window.my_modal_2.showModal()
                   }
                   className="btn btn-xs bg-orange-600 mt-3 text-white"
-                  disabled={classes?.newStatus === "approved"}
+                  // disabled={classes?.status === "approved"}
                 >
                   denied
                 </button>

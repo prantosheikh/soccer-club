@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddClasses = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
   const [axiosSecure] = useAxiosSecure();
   const onSubmit = (Addclass) => {
     const {
@@ -14,7 +14,7 @@ const AddClasses = () => {
       InstructorEmail,
       InstructorName,
       Price,
-      status,
+      // status,
     } = Addclass;
 
     const newCalss = {
@@ -24,7 +24,7 @@ const AddClasses = () => {
       InstructorEmail,
       InstructorName,
       price: parseFloat(Price),
-      status,
+      // status,
     };
     // console.log(newCalss);
 
@@ -39,6 +39,7 @@ const AddClasses = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        reset()
       }
     });
     // fetch("http://localhost:3000/instructorsclass", {
@@ -75,6 +76,7 @@ const AddClasses = () => {
         "
               //   defaultValue="test"
               placeholder="Class Name"
+              required
               {...register("ClassName", { required: true })}
             />
           </div>
@@ -86,6 +88,7 @@ const AddClasses = () => {
               className="py-3 ps-3 border border-cyan-500 rounded-md w-full
         "
               placeholder="Instructor name"
+              required
               defaultValue={user?.displayName}
               readOnly
               {...register("InstructorName", { required: true })}
@@ -100,6 +103,7 @@ const AddClasses = () => {
             className="py-3 ps-3  border border-cyan-500 rounded-md w-full
         "
             placeholder="Class Image"
+            required
             {...register("ClassImage", { required: true })}
           />
         </div>
@@ -112,6 +116,7 @@ const AddClasses = () => {
             <input
               className="py-3 ps-3   border border-cyan-500 rounded-md w-full"
               placeholder="Price"
+              required
               {...register("Price", { required: true })}
             />
           </div>
@@ -124,6 +129,7 @@ const AddClasses = () => {
         "
               defaultValue={user?.email}
               placeholder="Instructor email"
+              required
               readOnly
               {...register("InstructorEmail", { required: true })}
             />
@@ -131,7 +137,7 @@ const AddClasses = () => {
         </div>
 
         <div className="flex gap-4 mt-4">
-          <div className="w-2/6">
+          {/* <div className="w-2/6">
             <label className="label">
               <span className="label-text">Status</span>
             </label>
@@ -143,8 +149,8 @@ const AddClasses = () => {
               readOnly
               {...register("status", { required: true })}
             />
-          </div>
-          <div className="w-4/5">
+          </div> */}
+          <div className="w-full">
             <label className="label">
               <span className="label-text">Available seats</span>
             </label>
@@ -152,6 +158,7 @@ const AddClasses = () => {
               className="py-3 ps-3   border border-cyan-500 rounded-md w-full
         "
               placeholder="Available seats"
+              required
               {...register("AvailableSeats", { required: true })}
             />
           </div>

@@ -28,6 +28,7 @@ const SignUp = () => {
           name: data.name,
           email: data.email,
           photo: data.photoURL,
+          role : "Student"
         };
         fetch("http://localhost:3000/users", {
           method: "POST",

@@ -59,6 +59,9 @@ const AllUsers = () => {
 
     return (
       <div className="w-full ps-8">
+        <h2 className="text-4xl font-bold font-mono mb-8">
+          Manage <span className="text-blue-800">Users !</span>
+        </h2>
         <div className="overflow-x-auto">
           <table className="table ">
             {/* head */}
@@ -68,7 +71,7 @@ const AllUsers = () => {
                 <th>Photo</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Role</th>
+                <th>Student/Role</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -80,7 +83,7 @@ const AllUsers = () => {
                   <th>{index + 1}</th>
                   <td>
                     <img
-                      className="rounded-lg"
+                      className="rounded-lg h-14 w-14"
                       src={user?.photo}
                       width={60}
                       alt=""
@@ -89,12 +92,16 @@ const AllUsers = () => {
                   <td>{user?.name}</td>
                   <td>{user?.email}</td>
                   <td>
+                    {user.role === "Student"
+                      ? "Student"
+                      : user.role === "admin" || user.role === "instructor"}
+
                     {user.role === "admin" ? (
                       "Admin"
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="btn btn-ghost bg-orange-600 me-3  text-white"
+                        className="btn btn-ghost btn-sm bg-blue-600 mx-3  text-white"
                         disabled={user.role === "instructor"}
                       >
                         <FaUserShield></FaUserShield>
@@ -105,7 +112,7 @@ const AllUsers = () => {
                     ) : (
                       <button
                         onClick={() => handleMakeInstructor(user)}
-                        className="btn btn-ghost bg-orange-600 ms-3 text-white"
+                        className="btn btn-ghost btn-sm bg-blue-600 mx-3 text-white"
                         disabled={user.role === "admin"}
                       >
                         <FaServicestack></FaServicestack>

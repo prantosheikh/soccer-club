@@ -17,9 +17,11 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
 
-  const isAdmin = true;
+  // const isAdmin = true;
+  const isAdmin = false;
   const isStudent = false;
-  const isInstructor = false;
+  // const isInstructor = false;
+  const isInstructor = true;
 
   return (
     <div>
