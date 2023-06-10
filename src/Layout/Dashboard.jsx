@@ -19,9 +19,10 @@ const Dashboard = () => {
 
   // const isAdmin = true;
   const isAdmin = false;
-  const isStudent = false;
-  // const isInstructor = false;
-  const isInstructor = true;
+  // const isStudent = false;
+  const isStudent = true;
+  const isInstructor = false;
+  // const isInstructor = true;
 
   return (
     <div>

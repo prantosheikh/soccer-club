@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
+import AllClasses from "../pages/AllClasses/AllClasses";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddClasses from "../pages/Dashboard/Instructor/AddClasses";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "instructors-page",
         element: <InstructorsPage></InstructorsPage>,
+      },
+      {
+        path: "allClasses",
+        element: <AllClasses></AllClasses>
       },
       {
         path: "login",

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -10,7 +11,7 @@ const MyClasses = () => {
     const [de, setDe] = useState([]);
     const [updateId, setUpdateId] = useState([])
 
-  console.log(updateId);
+//   console.log(updateId);
 
   useEffect(() => {
     const denied = myClasses.filter((classes) => classes.status === "denied");
@@ -19,7 +20,11 @@ const MyClasses = () => {
   }, [myClasses]);
 
   useEffect(() => {
-    if (!user?.email) return;
+      if (!user?.email) return;
+      
+
+
+      
     axiosSecure.get(`/myClasses?email=${user?.email}`).then((res) => {
       setmyClasses(res.data);
     });
@@ -27,12 +32,23 @@ const MyClasses = () => {
 
   const {
     register,
-    handleSubmit,
+      handleSubmit,
+    reset,
     watch,
   } = useForm();
     const onSubmit = (update) => {
         axiosSecure.put(`/classUpdate/${updateId}`, { update }).then((res) => {
-          console.log(res.data);
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Your work has been saved",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                reset()
+            }
         });
   }
 
@@ -89,6 +105,7 @@ const MyClasses = () => {
                   >
                     update
                   </button>
+                  <br />
                   {classes?.status ? (
                     <span className="bg-teal-500  px-3 py-1 rounded text-white">
                       {classes?.status}
@@ -131,106 +148,103 @@ const MyClasses = () => {
                 <th></th>
               </tr>
             ))}
-            <dialog id="my_modal_2" className="modal">
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                method="dialog"
-                className="modal-box"
-              >
-                <h3 className="font-bold text-lg">Hello!</h3>
-
-                <div className="flex gap-4 mt-4">
-                  <div className=" w-1/2">
-                    <label className="label">
-                      <span className="label-text">Class Name</span>
-                    </label>
-                    <input
-                      className="py-3 ps-3 border border-cyan-500 me-4 rounded-md w-full  
-        "
-                      //   defaultValue="test"
-                      required
-                      placeholder="Class Name"
-                      {...register("ClassName", { required: true })}
-                    />
-                  </div>
-                  <div className="w-1/2">
-                    <label className="label">
-                      <span className="label-text">Instructor Name</span>
-                    </label>
-                    <input
-                      className="py-3 ps-3 border border-cyan-500 rounded-md w-full
-        "
-                      placeholder="Instructor name"
-                      required
-                      defaultValue={user?.displayName}
-                      readOnly
-                      {...register("InstructorName", { required: true })}
-                    />
-                  </div>
-                </div>
-                <div className="w-full mt-4">
-                  <label className="label">
-                    <span className="label-text">Class Image</span>
-                  </label>
-                  <input
-                    className="py-3 ps-3  border border-cyan-500 rounded-md w-full
-        "
-                    placeholder="Class Image"
-                    required
-                    {...register("ClassImage", { required: true })}
-                  />
-                </div>
-                <div className="flex gap-4 mt-4">
-                  <div className="w-1/2">
-                    <label className="label">
-                      <span className="label-text">Price</span>
-                    </label>
-                    <input
-                      className="py-3 ps-3   border border-cyan-500 rounded-md w-full"
-                      placeholder="Price"
-                      required
-                      {...register("Price", { required: true })}
-                    />
-                  </div>
-                  <div className="w-1/2">
-                    <label className="label">
-                      <span className="label-text">Instructor Email</span>
-                    </label>
-                    <input
-                      className="py-3 ps-3  me-4 border border-cyan-500 rounded-md w-full
-        "
-                      defaultValue={user?.email}
-                      placeholder="Instructor email"
-                      required
-                      readOnly
-                      {...register("InstructorEmail", { required: true })}
-                    />
-                  </div>
-                </div>
-                <div className="w-full">
-                  <label className="label">
-                    <span className="label-text">Available seats</span>
-                  </label>
-                  <input
-                    className="py-3 ps-3   border border-cyan-500 rounded-md w-full
-        "
-                    placeholder="Available seats"
-                    required
-                    {...register("AvailableSeats", { required: true })}
-                  />
-                </div>
-
-                <input
-                  className="btn btn-primary btn-block mt-4"
-                  type="submit"
-                />
-              </form>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
           </tbody>
         </table>
+        <dialog id="my_modal_2" className="modal">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            method="dialog"
+            className="modal-box"
+          >
+            <h3 className="font-bold text-lg">Hello!</h3>
+
+            <div className="flex gap-4 mt-4">
+              <div className=" w-1/2">
+                <label className="label">
+                  <span className="label-text">Class Name</span>
+                </label>
+                <input
+                  className="py-3 ps-3 border border-cyan-500 me-4 rounded-md w-full  
+        "
+                  //   defaultValue="test"
+                  required
+                  placeholder="Class Name"
+                  {...register("ClassName", { required: true })}
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="label">
+                  <span className="label-text">Instructor Name</span>
+                </label>
+                <input
+                  className="py-3 ps-3 border border-cyan-500 rounded-md w-full
+        "
+                  placeholder="Instructor name"
+                  required
+                  defaultValue={user?.displayName}
+                  readOnly
+                  {...register("InstructorName", { required: true })}
+                />
+              </div>
+            </div>
+            <div className="w-full mt-4">
+              <label className="label">
+                <span className="label-text">Class Image</span>
+              </label>
+              <input
+                className="py-3 ps-3  border border-cyan-500 rounded-md w-full
+        "
+                placeholder="Class Image"
+                required
+                {...register("ClassImage", { required: true })}
+              />
+            </div>
+            <div className="flex gap-4 mt-4">
+              <div className="w-1/2">
+                <label className="label">
+                  <span className="label-text">Price</span>
+                </label>
+                <input
+                  className="py-3 ps-3   border border-cyan-500 rounded-md w-full"
+                  placeholder="Price"
+                  required
+                  {...register("Price", { required: true })}
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="label">
+                  <span className="label-text">Instructor Email</span>
+                </label>
+                <input
+                  className="py-3 ps-3  me-4 border border-cyan-500 rounded-md w-full
+        "
+                  defaultValue={user?.email}
+                  placeholder="Instructor email"
+                  required
+                  readOnly
+                  {...register("InstructorEmail", { required: true })}
+                />
+              </div>
+            </div>
+            <div className="w-full">
+              <label className="label">
+                <span className="label-text">Available seats</span>
+              </label>
+              <input
+                className="py-3 ps-3   border border-cyan-500 rounded-md w-full
+        "
+                placeholder="Available seats"
+                required
+                {...register("AvailableSeats", { required: true })}
+              />
+            </div>
+
+            <input className="btn btn-primary btn-block mt-4" type="submit" />
+          </form>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </div>
     </div>
   );
