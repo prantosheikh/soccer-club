@@ -22,17 +22,18 @@ const InstructorsPage = () => {
       <div className="mb-80 mt-20 px-10">
         <h2 className="text-center text-4xl mb-7">Instructor Page</h2>
         <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Photo</th>
-                <th>Name</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
+          <tbody>
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+
               {instructors &&
                 instructors.map((instructor, index) => (
                   <tr key={instructor._id}>
@@ -57,8 +58,8 @@ const InstructorsPage = () => {
                     </th>
                   </tr>
                 ))}
-            </tbody>
-          </table>
+            </table>
+          </tbody>
         </div>
       </div>
     );

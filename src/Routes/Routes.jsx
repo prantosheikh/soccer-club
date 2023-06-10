@@ -6,6 +6,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddClasses from "../pages/Dashboard/Instructor/AddClasses";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import SelectedClass from "../pages/Dashboard/Student/SelectedClass";
 import Home from "../pages/Home/Home/Home";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import Login from "../pages/Login/Login";
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
         path: "myclasses",
         element: <MyClasses></MyClasses>
       },
+      // Student Element
+      {
+        path: 'selecedclass',
+        element : <SelectedClass></SelectedClass>
+      }
     ],
   },
 ]);

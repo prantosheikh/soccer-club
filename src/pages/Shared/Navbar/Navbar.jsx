@@ -3,8 +3,15 @@ import logo from '../../../assets/logo/icons8-football-64.png';
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
-  console.log(user);
+  const { user, logOut, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="text-center mt-52">
+        <span className="loading loading-spinner text-lg text-primary"></span>
+      </div>
+    );
+  }
+  // console.log(user);
      const handleLogOut = () => {
       logOut()
         .then(() => {})
@@ -76,7 +83,7 @@ const Navbar = () => {
             </button>
           ) : (
             <Link to="/login">
-              <a className="btn btn-primary text-white font-bold me-4">Login</a>
+              <p className="btn btn-primary text-white font-bold me-4">Login</p>
             </Link>
           )}
         </div>

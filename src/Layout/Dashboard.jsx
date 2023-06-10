@@ -115,7 +115,7 @@ const Dashboard = () => {
             {isStudent && (
               <>
                 <li>
-                  <NavLink to="/">
+                  <NavLink to="/dashboard/selecedclass">
                     <FaRegBookmark className="text-2xl text-green-500"></FaRegBookmark>
                     Selected Classes
                   </NavLink>
