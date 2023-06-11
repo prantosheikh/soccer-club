@@ -130,9 +130,9 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/payment">
-                    <FaWallet className="text-2xl text-orange-700"> </FaWallet>{" "}
-                    Payment History
+                  <NavLink to="/dashboard/paymentmethod">
+                    <FaWallet className="text-2xl text-yellow-400"> </FaWallet>{" "}
+                    Payment
                   </NavLink>
                 </li>
 

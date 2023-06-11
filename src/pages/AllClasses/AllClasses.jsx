@@ -4,7 +4,6 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useClass from "../../hooks/useClass";
 
 const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -15,7 +14,7 @@ const AllClasses = () => {
   //  const total = cart.reduce((sum, item) => item.price + sum, 0);
 
 
-  const [classes] = useClass()
+  // const [classes] = useClass()
   // console.log(classes);
 
 
