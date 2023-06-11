@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA6xVDNk6Yi7lk6i1Bxt9H6Jv0dXNqCM0E",
-  authDomain: "soccer-club-457fe.firebaseapp.com",
-  projectId: "soccer-club-457fe",
-  storageBucket: "soccer-club-457fe.appspot.com",
-  messagingSenderId: "699486985624",
-  appId: "1:699486985624:web:d582715201ebed5fff5fed",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

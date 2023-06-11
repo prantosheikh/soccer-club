@@ -24,7 +24,7 @@ const CheckoutForm = ({classes, price}) => {
         setClientSecret(res.data.clientSecret);
       });
     }
-  }, [price]);
+  }, []);
 
     // if (loading) {
     //   return <span className="loading loading-spinner loading-lg"></span>;
@@ -92,8 +92,8 @@ const CheckoutForm = ({classes, price}) => {
       axiosSecure.post("/payments", payment)
         .then(res => {
           if (res.data.insertedId) {
-            // clg
-            fe
+            // // clg
+            // fe
           }
         })
       

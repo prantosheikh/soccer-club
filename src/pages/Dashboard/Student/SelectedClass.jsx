@@ -23,7 +23,7 @@ const SelectedClass = () => {
   const handleDelete = (id) => {
     axiosSecure.delete(`/deleteSelectedClass/${id}`).then((res) => {
       //   console.log(res.data);
-      refetch()
+      refetch();
     
       Swal.fire({
         title: "Are you sure?",
