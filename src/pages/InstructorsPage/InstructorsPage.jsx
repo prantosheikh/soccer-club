@@ -5,7 +5,7 @@ const InstructorsPage = () => {
   console.log(instructors);
 
  useEffect(() => {
-   fetch("http://localhost:3000/instructors")
+   fetch("https://soccer-club-server.vercel.app/instructors")
      .then((res) => res.json())
      .then((data) => {
        setInstructor(
@@ -20,7 +20,7 @@ const InstructorsPage = () => {
 
     return (
       <div className="mb-80 mt-20 px-10">
-        <h2 className="text-center text-4xl mb-7">Instructor Page</h2>
+        <h2 className="text-center text-4xl mb-7 ms-7">Instructor Page</h2>
         <div className="overflow-x-auto">
           <tbody>
             <table className="table">
