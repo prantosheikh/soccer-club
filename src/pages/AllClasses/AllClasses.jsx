@@ -4,6 +4,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAdmin from "../../hooks/AdminHook/useAdmin";
+import useInstructor from "../../hooks/InstructorHook/useInstructor";
 
 const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -16,6 +18,9 @@ const AllClasses = () => {
 
   // const [classes] = useClass()
   // console.log(classes);
+
+  const [isAdmin] = useAdmin()
+ const [isInstructor] = useInstructor();
 
 
 
@@ -101,7 +106,7 @@ const AllClasses = () => {
                 <div className="card-actions justify-end">
                   <button
                     onClick={() => handleSelected(classItem)}
-                    disabled={isClassSelected(classItem._id)}
+                    disabled={isClassSelected(classItem._id) || isAdmin || isInstructor}
                     className="btn btn-primary btn-block font-bold text-white"
                   >
                     Select{" "}
