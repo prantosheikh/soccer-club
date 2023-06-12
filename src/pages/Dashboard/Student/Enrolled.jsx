@@ -7,8 +7,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const Enrolled = () => {
     const { user , loading} = useAuth();
     const [axiosSecure] = useAxiosSecure()
-  const [payments, setPayment] = useState()
-  console.log(payments);
+    const [payments, setPayment] = useState()
     // console.log(payments[0].ClassId);
     // console.log(user.email);
 
@@ -50,7 +49,7 @@ const Enrolled = () => {
               {payments &&
                 payments[0]?.ClassId?.map((payment, i) => (
                   <tr key={payment._id}>
-                    {console.log(payment)}
+                    {/* {console.log(payment)} */}
                     <th>{i + 1}</th>
                     <td>
                       <div className="flex items-center space-x-3">
