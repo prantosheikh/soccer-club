@@ -30,7 +30,7 @@ const SignUp = () => {
           photo: data.photoURL,
           role : "Student"
         };
-        fetch("https://soccer-club-server.vercel.app/users", {
+        fetch("http://localhost:3000/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(saveUser),

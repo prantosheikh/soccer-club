@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
       console.log("current user", currentUser);
        if (currentUser) {
          axios
-           .post("https://soccer-club-server.vercel.app/jwt", { email: currentUser.email })
+           .post("http://localhost:3000/jwt", { email: currentUser.email })
            .then((data) => {
              // console.log(data.data.token)
              if (data.data) {

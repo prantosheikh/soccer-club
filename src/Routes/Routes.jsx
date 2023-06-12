@@ -6,6 +6,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddClasses from "../pages/Dashboard/Instructor/AddClasses";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import Enrolled from "../pages/Dashboard/Student/Enrolled";
 import PaymentMethod from "../pages/Dashboard/Student/PaymentMethod/PaymentMethod";
 import SelectedClass from "../pages/Dashboard/Student/SelectedClass";
 import Home from "../pages/Home/Home/Home";
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
         path: "paymentmethod",
         element: <PaymentMethod></PaymentMethod>
       },
+      {
+        path: "enrolled",
+        element: <Enrolled></Enrolled>
+      }
     ],
   },
 ]);

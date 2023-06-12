@@ -5,7 +5,7 @@ const InstructorsPage = () => {
   console.log(instructors);
 
  useEffect(() => {
-   fetch("https://soccer-club-server.vercel.app/instructors")
+   fetch("http://localhost:3000/instructors")
      .then((res) => res.json())
      .then((data) => {
        setInstructor(

@@ -12,18 +12,24 @@ import {
   FcHome
 } from "react-icons/fc";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/AdminHook/useAdmin";
+import useInstructor from "../hooks/InstructorHook/useInstructor";
+import StudentHook from "../hooks/StudentHook/StudentHook";
 
 
 
 const Dashboard = () => {
 
   // const isAdmin = true;
-  const isAdmin = false;
+  const [isAdmin] = useAdmin()
+  
+  const [isInstructor] = useInstructor()
+  // console.log(isInstructor);
   // const isStudent = false;
-  const isStudent = true;
-  const isInstructor = false;
-  // const isInstructor = true;
+  const [isStudent,] = StudentHook();
+  console.log(isAdmin, isInstructor, isStudent);
 
+  
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -41,8 +47,8 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {isAdmin && (
-              <>
+            {isAdmin &&(
+              <div>
                 <li>
                   <NavLink to="/">
                     <FcHome className="text-2xl"></FcHome> Admin Home
@@ -75,10 +81,11 @@ const Dashboard = () => {
                     Contact
                   </NavLink>
                 </li>
-              </>
+              </div>
             )}
+
             {isInstructor && (
-              <>
+              <div>
                 <li>
                   <NavLink to="/">
                     <FcHome className="text-2xl"></FcHome> Instructor Home
@@ -109,7 +116,7 @@ const Dashboard = () => {
                     Contact
                   </NavLink>
                 </li>
-              </>
+              </div>
             )}
 
             {isStudent && (
@@ -120,9 +127,8 @@ const Dashboard = () => {
                     Selected Classes
                   </NavLink>
                 </li>
-
                 <li>
-                  <NavLink to="/dashboard/reservation">
+                  <NavLink to="/dashboard/enrolled">
                     <FaBookOpen className="text-2xl text-purple-600">
                       {" "}
                     </FaBookOpen>
@@ -135,7 +141,6 @@ const Dashboard = () => {
                     Payment
                   </NavLink>
                 </li>
-
                 <div className="divider"></div>
                 <li>
                   <NavLink to="/">

@@ -3,15 +3,17 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useClass from "../../../hooks/useClass";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const { user, loading } = useAuth();
   const [myClasses, setmyClasses] = useState([]);
-    const [de, setDe] = useState([]);
-    const [updateId, setUpdateId] = useState([])
+  const [de, setDe] = useState([]);
+  const [classes, refetch] = useClass()
+  const [updateId, setUpdateId] = useState([]);
 
-//   console.log(updateId);
+  //   console.log(updateId);
 
   useEffect(() => {
     const denied = myClasses.filter((classes) => classes.status === "denied");
@@ -20,38 +22,30 @@ const MyClasses = () => {
   }, [myClasses]);
 
   useEffect(() => {
-      if (!user?.email) return;
-      
+    if (!user?.email) return;
 
-
-      
     axiosSecure.get(`/myClasses?email=${user?.email}`).then((res) => {
       setmyClasses(res.data);
     });
   }, [user?.email]);
 
-  const {
-    register,
-      handleSubmit,
-    reset,
-    watch,
-  } = useForm();
-    const onSubmit = (update) => {
-        axiosSecure.put(`/classUpdate/${updateId}`, { update }).then((res) => {
-            console.log(res.data);
-            if (res.data.modifiedCount > 0) {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Your work has been saved",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                reset()
-            }
+  const { register, handleSubmit, reset, watch } = useForm();
+  const onSubmit = (update) => {
+    axiosSecure.put(`/classUpdate/${updateId}`, { update }).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
         });
-  }
-
+        reset();
+      }
+      refetch()
+    });
+  };
 
   return (
     <div>
@@ -251,4 +245,3 @@ const MyClasses = () => {
 };
 
 export default MyClasses;
-
