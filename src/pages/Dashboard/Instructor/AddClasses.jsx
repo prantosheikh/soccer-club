@@ -42,7 +42,7 @@ const AddClasses = () => {
         reset()
       }
     });
-    // fetch("http://localhost:3000/instructorsclass", {
+    // fetch("https://soccer-club-server.vercel.app/instructorsclass", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",

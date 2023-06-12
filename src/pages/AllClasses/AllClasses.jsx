@@ -65,7 +65,7 @@ const AllClasses = () => {
            ...prevSelectedClasses,
            selectedClass._id,
          ]);
-      //   console.log(selectedClass);
+        console.log(selectedClass);
       axiosSecure.post("/seleteClass", { selecteClass }).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {

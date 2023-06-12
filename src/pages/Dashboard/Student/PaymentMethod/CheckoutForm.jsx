@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const CheckoutForm = ({classes, price}) => {
   const [axiosSecure] = useAxiosSecure();
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -14,6 +14,8 @@ const CheckoutForm = ({classes, price}) => {
   const [processing, setProcessing] = useState(false);
   const [transationId, setTransationId] = useState("");
   console.log(clientSecret);
+
+  console.log({classes});
 
 
   useEffect(() => {
@@ -86,7 +88,7 @@ const CheckoutForm = ({classes, price}) => {
         data: new Date(),
         status: "service pending",
         newId: classes.map((cla) => cla?._id),
-        ClassId: classes,
+        ClassId: classes.map((cla) => cla?.ClassId),
         ClassName: classes.map((cla) => cla?.selecteClass.ClassName),
       };
     //  console.log(newId);

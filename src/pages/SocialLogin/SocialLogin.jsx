@@ -20,7 +20,7 @@ const SocialLogin = () => {
           role : "Student"
         };
       console.log(loggedInUser);
-      fetch("http://localhost:3000/users", {
+      fetch("https://soccer-club-server.vercel.app/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(saveUser),

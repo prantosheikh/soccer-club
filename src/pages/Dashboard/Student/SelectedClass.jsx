@@ -18,7 +18,7 @@ const SelectedClass = () => {
     const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const [classes, refetch] = useClass();
-  // console.log(classes);
+  console.log(classes);
 
   const handleDelete = (id) => {
     axiosSecure.delete(`/deleteSelectedClass/${id}`).then((res) => {

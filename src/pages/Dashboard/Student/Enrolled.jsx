@@ -7,7 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const Enrolled = () => {
     const { user , loading} = useAuth();
     const [axiosSecure] = useAxiosSecure()
-    const [payments, setPayment] = useState()
+  const [payments, setPayment] = useState()
+  console.log(payments);
     // console.log(payments[0].ClassId);
     // console.log(user.email);
 
@@ -49,14 +50,14 @@ const Enrolled = () => {
               {payments &&
                 payments[0]?.ClassId?.map((payment, i) => (
                   <tr key={payment._id}>
-                    {/* {console.log(payment)} */}
+                    {console.log(payment)}
                     <th>{i + 1}</th>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
                             <img
-                              src={payment?.selecteClass.ClassImage}
+                              src={payment?.selecteClass?.ClassImage}
                               alt="Avatar Tailwind CSS Component"
                             />
                           </div>

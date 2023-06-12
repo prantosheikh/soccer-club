@@ -1,13 +1,13 @@
 import axios from "axios";
 import {
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    updateProfile,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
@@ -48,13 +48,15 @@ const AuthProvider = ({ children }) => {
       console.log("current user", currentUser);
        if (currentUser) {
          axios
-           .post("http://localhost:3000/jwt", { email: currentUser.email })
+           .post("https://soccer-club-server.vercel.app/jwt", {
+             email: currentUser.email,
+           })
            .then((data) => {
              // console.log(data.data.token)
              if (data.data) {
                localStorage.setItem("access-token", data?.data?.token);
                setLoading(false);
-           } 
+             }
            });
        } else {
          localStorage.removeItem("access-token");

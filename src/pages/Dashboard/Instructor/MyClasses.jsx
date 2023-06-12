@@ -7,10 +7,10 @@ import useClass from "../../../hooks/useClass";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const [myClasses, setmyClasses] = useState([]);
   const [de, setDe] = useState([]);
-  const [classes, refetch] = useClass()
+  const [refetch] = useClass()
   const [updateId, setUpdateId] = useState([]);
 
   //   console.log(updateId);

@@ -11,6 +11,7 @@ import {
   FcGallery,
   FcHome
 } from "react-icons/fc";
+import { MdPayment } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/AdminHook/useAdmin";
 import useInstructor from "../hooks/InstructorHook/useInstructor";
@@ -47,7 +48,7 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {isAdmin &&(
+            {isAdmin && (
               <div>
                 <li>
                   <NavLink to="/">
@@ -139,6 +140,14 @@ const Dashboard = () => {
                   <NavLink to="/dashboard/paymentmethod">
                     <FaWallet className="text-2xl text-yellow-400"> </FaWallet>{" "}
                     Payment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/paymenthistory">
+                    <MdPayment className="text-2xl text-orange-400">
+                      {" "}
+                    </MdPayment>{" "}
+                    Payment History
                   </NavLink>
                 </li>
                 <div className="divider"></div>

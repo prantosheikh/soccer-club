@@ -12,6 +12,7 @@ import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import Enrolled from "../pages/Dashboard/Student/Enrolled";
 import PaymentMethod from "../pages/Dashboard/Student/PaymentMethod/PaymentMethod";
 import SelectedClass from "../pages/Dashboard/Student/SelectedClass";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import Login from "../pages/Login/Login";
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
