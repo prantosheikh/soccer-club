@@ -3,6 +3,7 @@ import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
 import ProtectedRoutes from "../ProtectedRoutes/ProtectedRoutes";
 import SecureAdmin from "../ProtectedRoutes/SecureAdmin";
+import SecureInstructors from "../ProtectedRoutes/SecureInstructors";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddClasses from "../pages/Dashboard/Instructor/AddClasses";
@@ -79,11 +80,23 @@ export const router = createBrowserRouter([
       // Instructors Element
       {
         path: "addclasses",
-        element: <AddClasses></AddClasses>,
+        element: (
+          <ProtectedRoutes>
+            <SecureInstructors>
+              <AddClasses></AddClasses>,
+            </SecureInstructors>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "myclasses",
-        element: <MyClasses></MyClasses>,
+        element: (
+          <ProtectedRoutes>
+            <SecureInstructors>
+              <MyClasses></MyClasses>,
+            </SecureInstructors>
+          </ProtectedRoutes>
+        ),
       },
       // Student Element
       {
