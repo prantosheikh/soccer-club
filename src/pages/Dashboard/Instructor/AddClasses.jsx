@@ -18,7 +18,7 @@ const AddClasses = () => {
     } = Addclass;
 
     const newCalss = {
-      AvailableSeats,
+      AvailableSeats :parseFloat(AvailableSeats),
       ClassImage,
       ClassName,
       InstructorEmail,

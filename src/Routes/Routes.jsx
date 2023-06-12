@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
+import ProtectedRoutes from "../ProtectedRoutes/ProtectedRoutes";
+import SecureAdmin from "../ProtectedRoutes/SecureAdmin";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddClasses from "../pages/Dashboard/Instructor/AddClasses";
@@ -30,7 +32,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "allClasses",
-        element: <AllClasses></AllClasses>,
+        element: (
+          <ProtectedRoutes>
+            <AllClasses></AllClasses>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "login",
@@ -44,15 +50,31 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <ProtectedRoutes>
+        <Dashboard></Dashboard>
+      </ProtectedRoutes>
+    ),
     children: [
       {
         path: "allusers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <ProtectedRoutes>
+            <SecureAdmin>
+              <AllUsers></AllUsers>,
+            </SecureAdmin>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "manageclasses",
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <ProtectedRoutes>
+            <SecureAdmin>
+              <ManageClasses></ManageClasses>,
+            </SecureAdmin>
+          </ProtectedRoutes>
+        ),
       },
       // Instructors Element
       {
@@ -66,16 +88,28 @@ export const router = createBrowserRouter([
       // Student Element
       {
         path: "selecedclass",
-        element: <SelectedClass></SelectedClass>,
+        element: (
+          <ProtectedRoutes>
+            <SelectedClass></SelectedClass>,
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "paymentmethod",
-        element: <PaymentMethod></PaymentMethod>
+        element: (
+          <ProtectedRoutes>
+            <PaymentMethod></PaymentMethod>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "enrolled",
-        element: <Enrolled></Enrolled>
-      }
+        element: (
+          <ProtectedRoutes>
+            <Enrolled></Enrolled>
+          </ProtectedRoutes>
+        ),
+      },
     ],
   },
 ]);

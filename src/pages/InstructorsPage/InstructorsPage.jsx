@@ -21,7 +21,7 @@ const InstructorsPage = () => {
 
     return (
       <>
-        <h2 className="text-center text-4xl mb-7 ms-7">Instructor Page</h2>
+        <h2 className="text-center text-4xl my-7 ms-7">Instructor Page</h2>
         <div className=" mt-20  grid md:grid-cols-3 gap-6 mx-8">
           {instructors &&
             instructors.map((instructor, index) => (

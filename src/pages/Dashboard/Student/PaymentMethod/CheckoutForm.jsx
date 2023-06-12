@@ -89,6 +89,7 @@ const CheckoutForm = ({classes, price}) => {
         ClassId: classes,
         ClassName: classes.map((cla) => cla?.selecteClass.ClassName),
       };
+    //  console.log(newId);
       axiosSecure.post("/payments", payment)
         .then(res => {
           if (res.data.insertedId) {
@@ -96,7 +97,7 @@ const CheckoutForm = ({classes, price}) => {
             // fe
           }
         })
-      
+       
     }
   }
     return (

@@ -21,9 +21,7 @@ const Navbar = () => {
       <li>
         <Link to="/instructors-page">Instructors Page</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      
       <li>
         <Link to="/allClasses">Classes</Link>
       </li>
@@ -65,8 +63,18 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{Navbar}</ul>
         </div>
         <div className="navbar-end">
-          {user && <img  className="rounded-full me-4 w-12 h-12" src={user?.photoURL} alt="" />}
+          {user && (
+            <img
+              className="rounded-full me-4 w-12 h-12"
+              src={user?.photoURL}
+              alt=""
+            />
+          )}
+          <button className="btn btn-outline btn-primary me-5">
 
+            <Link to="/dashboard">Dashboard</Link>
+          </button>
+         
           {user ? (
             <button
               onClick={handleLogOut}
